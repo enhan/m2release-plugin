@@ -196,6 +196,8 @@ public class M2ReleaseBuildWrapper extends BuildWrapper {
 				final MavenModuleSet mmSet = getModuleSet(bld);
 				M2ReleaseArgumentsAction args = bld.getAction(M2ReleaseArgumentsAction.class);
 				
+				log.info("[M2Release] After build : {}, [}", args.isEnableAutoRollback() , bld.getResult() );
+				
 				if (args.isDryRun()) {
 					lstnr.getLogger().println("[M2Release] its only a dryRun, no need to mark it for keep");
 				}
@@ -268,7 +270,7 @@ public class M2ReleaseBuildWrapper extends BuildWrapper {
 				if (!args.isDryRun() && args.isEnableAutoRollback() && bld.getResult() != null && bld.getResult().isWorseThan(Result.SUCCESS)){
 					// Release error
 					listener.getLogger().println("[M2Release] Last release failed. Trying to perform an auto-rollback.");
-					
+					log.info("[M2Release] Autorollback");
 					bld.getProject().scheduleBuild(0, new ReleaseFailedCause(), new M2ReleaseArgumentInterceptorAction(rollbackGoals) );
 					
 				}

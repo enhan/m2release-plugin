@@ -15,7 +15,7 @@
 	</f:entry>  
 
 	<f:entry title="Enable auto-rollback" help="/plugin/m2release/help-projectConfig-enableAutoRollback.html">
-		<f:checkbox name="enableAutoRollback" checked="${h.defaulted(instance.selectAppendHudsonUsername,descriptor.DEFAULT_ENABLE_AUTO_ROLLBACK)}"/>
+		<f:checkbox name="enableAutoRollback" checked="${h.defaulted(instance.enableAutoRollback,descriptor.DEFAULT_ENABLE_AUTO_ROLLBACK)}"/>
 	</f:entry>
 	
 	<f:entry title="Rollback goals and options" help="/plugin/m2release/help-projectConfig-rollbackGoals.html">
